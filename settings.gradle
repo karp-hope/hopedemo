@@ -1,0 +1,2 @@
+include ':app', ':hopejavalib'
+rootProject.name='HopeDemo'
