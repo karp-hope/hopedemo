@@ -1,4 +1,6 @@
-package com.example.hopedemo
+package com.hope.dexhook
+
+import org.junit.Test
 
 import org.junit.Test
 
@@ -14,14 +16,13 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
 
-        var result = if( 1 == 2){
-            println("111111")
+        var result = if( 1 == 1){
             1
         }else{
-            println("222222")
-            2
+           2
         }
 
         println("result:${result}")
     }
+
 }
