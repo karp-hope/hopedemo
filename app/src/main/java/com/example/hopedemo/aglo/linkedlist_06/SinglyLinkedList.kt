@@ -170,15 +170,38 @@ class SinglyLinkedList {
         }
         println("中间节点${p?.data}")
         var leftLine:Node?
-        val rightLine:Node?
+        var rightLine:Node?
         if(q?.next == null){///这个是奇数
             ///此时p肯定为中间节点
-            leftLine = p;
             rightLine = p?.next
-        }else{
+            leftLine = inverseLinkList(p)?.next;
+
+        }else{///这是个偶数点
+            rightLine = p?.next
+            ///p 和p.next都是终点
+            leftLine = inverseLinkList(p);
 
         }
-        return true
+        return TFResult(leftLine, rightLine)
+    }
+
+    private fun inverseLinkList(p: Node?):Node?{
+        var headTmp = head
+        if(p == null)
+            return p
+
+        var pre: Node? = null
+
+        while (headTmp !== p) {
+            var next = headTmp?.next
+            headTmp?.next = pre
+            pre = headTmp
+            headTmp = next
+        }
+        headTmp?.next = pre
+        //　返回左半部分的中点之前的那个节点
+        //　从此处开始同步像两边比较
+        return headTmp
     }
 
 }
