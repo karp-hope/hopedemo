@@ -1,6 +1,7 @@
 package com.example.hopedemo.algo.linkedlist_07
 
 import com.example.hopedemo.aglo.linkedlist_07.LinkedListAlgo
+import org.junit.Assert
 import org.junit.Test
 
 /**
@@ -25,6 +26,44 @@ class LinkedListAlgoTest {
             println("after reverse")
             it.printAll(it.head)
         }
+    }
 
+    @Test
+    fun `test circlr list`() {
+        var listAlgo = LinkedListAlgo()
+        insertValueToList(intArrayOf(10, 5, 4, 3, 2, 1), listAlgo)
+        Assert.assertFalse(listAlgo.checkCircle(listAlgo.head))
+    }
+
+    @Test
+    fun `test real circlr`(){
+        var listAlgo = LinkedListAlgo()
+        insertValueToList(intArrayOf(10, 5, 4, 3, 2, 1), listAlgo)
+        Assert.assertFalse(listAlgo.checkCircle(listAlgo.head))
+
+        listAlgo.transformListToCircle()
+        Assert.assertTrue(listAlgo.checkCircle(listAlgo.head))
+    }
+
+    @Test fun testMergeSortedList(){
+        createListAlgo(intArrayOf(10, 5, 4, 3, 2, 1)).let {
+            var info = it.mergeSortedList(createListAlgo(intArrayOf(2,3,6,8,10)).head,
+                createListAlgo(intArrayOf(1,3,5,7,9)).head)
+
+            it.printAll(info)
+        }
+//        LinkedListAlgo().printAll(result)
+    }
+
+    private fun createListAlgo(sourceArray: IntArray):LinkedListAlgo{
+        var listAlgo = LinkedListAlgo()
+        insertValueToList(sourceArray, listAlgo)
+        return listAlgo
+    }
+
+    private fun insertValueToList(sourceArray: IntArray, destList:LinkedListAlgo){
+        for(i in sourceArray){
+            destList.insertToHead(i)
+        }
     }
 }

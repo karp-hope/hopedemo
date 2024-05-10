@@ -1,5 +1,7 @@
 package com.example.hopedemo.aglo.linkedlist_07
 
+import java.lang.RuntimeException
+
 /**
  * description: com.example.hopedemo.aglo.linkedlist_07
  * *
@@ -61,6 +63,58 @@ class LinkedListAlgo {
             }
         }
         return false
+    }
+
+    fun transformListToCircle():Boolean{
+        if(headIsEmptyOrOneElement())
+            return false;
+        var node = head;
+        while(node?.next != null){
+            node = node.next
+        }
+        if(node != null){
+            node.next = head
+            return true
+        }
+        return false
+    }
+
+    private fun headIsEmptyOrOneElement():Boolean{
+        if(head == null || head?.next == null)
+            return true
+        return false
+    }
+
+    fun mergeSortedList(listLeft: Node?, listRight:Node?):Node?{
+        var left = listLeft
+        var right = listRight
+
+        var resultNode:Node? = null
+        if((left?.data ?: 0) > (right?.data ?: 0)){
+            resultNode = left
+            left = left?.next
+        }else{
+            resultNode = right
+            right = right?.next
+        }
+
+        var circleNode = resultNode
+        while (left != null && right != null){
+            if(left.data > right.data){
+                circleNode?.next = left
+                left = left.next
+            } else{
+                circleNode?.next = right;
+                right = right.next
+            }
+            circleNode = circleNode?.next
+        }
+        if(left != null){
+            circleNode?.next = left
+        }else{
+            circleNode?.next = right
+        }
+        return resultNode
     }
 }
 
