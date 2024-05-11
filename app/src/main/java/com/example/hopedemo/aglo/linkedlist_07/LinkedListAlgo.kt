@@ -116,6 +116,20 @@ class LinkedListAlgo {
         }
         return resultNode
     }
+
+    ///删除链表中倒数第 n 个节点, 使用一个快指针走n个节点，然后再来一个慢指针同时走，当
+    ///快指针走到尾部时候，此时慢指针指向的就是 倒数第n个节点的位置
+    fun deleteInverseNode(list:Node?, deletePos:Int):Node?{
+        if(list == null)
+            return list
+        var fast = list
+        var i = 1////注意是倒数第几个，所以从1开始
+        while (list != null && i < deletePos){
+            i++
+            fast = fast.next
+        }
+
+    }
 }
 
 class Node constructor(var data:Int, var next:Node?){
