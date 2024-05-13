@@ -126,9 +126,9 @@ class LinkedListAlgo {
         var i = 1////注意是倒数第几个，所以从1开始
         while (list != null && i < deletePos){
             i++
-            fast = fast.next
+            fast = fast?.next
         }
-
+        return null
     }
 }
 
